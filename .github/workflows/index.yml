@@ -44,7 +44,7 @@ jobs:
         run: |
               git config --global user.name "github-actions[bot]"
               git config --global user.email "github-actions[bot]@users.noreply.github.com"
-              git add resume.pdf
+              git add -f resume.pdf
               git commit -m "create new resume.pdf" || echo "No changes to commit"
               git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
         env:
