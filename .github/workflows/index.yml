@@ -1,0 +1,54 @@
+name: create pdf from json
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  start_pdf_generation_process:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: clone repository
+        uses: actions/checkout@v4
+      
+      - name: install nodejs
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+        
+      - name: install repo
+        run: npm init -y
+      
+      - name: install resumed and jsonresume-theme-even package
+        run: npm install resumed jsonresume-theme-even
+    
+      - name: create a basic resume.json file
+        run: npx resumed init
+
+      - name: validate resums.json file
+        run: npx resumed validate resume.json
+
+      - name: generate html file from resume.json
+        run: npx resumed render --theme jsonresume-theme-even
+      
+      - name: install puppeteer, this helps us to convert html to pdf
+        run: npm install puppeteer
+
+      - name: making script executable
+        run:  chmod +x htmlToPdf.sh
+
+      - name: generate pdf from html file.
+        run: ./htmlToPdf.sh
+
+      - name: Commit and Push Changes
+        run: |
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git add resume.pdf
+              git commit -m "create new resume.pdf" || echo "No changes to commit"
+              git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+        env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

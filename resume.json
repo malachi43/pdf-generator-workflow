@@ -1,0 +1,99 @@
+{
+    "basics": {
+        "name": "Uko Chibuike Malachi",
+        "label": "Software Developer",
+        "picture": "https://avatars.githubusercontent.com/u/113272653?v=4",
+        "email": "ukomalachi@gmail.com",
+        "phone": "07064726898",
+        "website": "https://github.com/malachi43",
+        "summary": "Enthusiastic backend developer with a focus on building scalable and maintainable applications. Proficient in Node.js, Express.js, and MongoDB, with a strong foundation in JavaScript and TypeScript.Experienced in Agile development practices and working collaboratively to deliver high-quality software solutions.Passionate about leveraging technology to innovate and create user-centric products.Looking to contribute to dynamic teams focused on building modern and efficient web applications.",
+        "location": {
+            "address": "No 1, Gbesu Jisu, Tori Lovi, off Age-Mowo, Lagos. Nigeria",
+            "postalCode": "100001",
+            "city": "Lagos",
+            "countryCode": "NG",
+            "region": "Age-Mowo"
+        },
+        "profiles": [
+            {
+                "network": "Twitter",
+                "username": "@UkoMalachi0412",
+                "url": "https://x.com/ukomalachi0412?s=21&t=j_GTYygjVUnd8ZPu2uwVag"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "Enoverlab",
+            "position": "Frontend Developer Intern",
+            "website": "https://enoverlab.com",
+            "startDate": "2024-11-01",
+            "endDate": "2024-12-13",
+            "summary": "collaborated with cross-functional teams(product managers, UI/UX designers, and developers) to design and develop a 6-week MVP for a blood donation platform",
+            "highlights": [
+                "Focused on building user-centeric features",
+                "Ensure high-quality, responsive and engaging user experiences."
+            ]
+        },
+        {
+            "name": "Learnable",
+            "position": "Backend Developer Intern",
+            "website": "https://learnable.genesystechhub.com/",
+            "startDate": "2022-01-01",
+            "endDate": "2022-07-17",
+            "summary": "Ensured seamless deployment and integration by following best practices for containerization and version control.",
+            "highlights": [
+                "Translated user story maps into actionable technical specifications."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Federal University of Technology Owerri (FUTO)",
+            "area": "Electrical Electronics Engineering - Electronic & Computer Engineering",
+            "studyType": "Bachelor",
+            "startDate": "2016-01-01",
+            "endDate": "2021-11-22",
+            "gpa": "4.19",
+            "courses": [
+                "Semiconductor Devices",
+                "Operational Amplifiers (Op-Amps)"
+            ]
+        }
+    ],
+    "awards": [
+        {
+            "title": "Payaza Developers Circle 2024 Winners",
+            "date": "2024-07-15",
+            "awarder": "Payaza",
+            "summary": "payaza api integration"
+        }
+    ],
+    "skills": [
+        {
+            "name": "Web Development",
+            "level": "Expert",
+            "keywords": [
+                "HTML",
+                "CSS",
+                "Javascript"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "fluency": "expert"
+        }
+    ],
+    "interests": [
+        {
+            "name": "Photography",
+            "keywords": [
+                "Blur",
+                "Autofocus",
+                "Lens"
+            ]
+        }
+    ]
+}
