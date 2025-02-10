@@ -49,3 +49,10 @@ jobs:
               git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          files: resume.pdf  # Change to your actual file path
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
