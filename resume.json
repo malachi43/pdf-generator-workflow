@@ -1,134 +1,99 @@
 {
     "basics": {
-        "name": "John Doe",
-        "label": "Programmer",
-        "image": "",
-        "email": "john@gmail.com",
-        "phone": "(912) 555-4321",
-        "url": "https://johndoe.com",
-        "summary": "A summary of John Doe…",
+        "name": "Uko Chibuike Malachi",
+        "label": "Software Developer",
+        "picture": "https://avatars.githubusercontent.com/u/113272653?v=4",
+        "email": "ukomalachi@gmail.com",
+        "phone": "07064726898",
+        "website": "https://github.com/malachi43",
+        "summary": "Enthusiastic backend developer with a focus on building scalable and maintainable applications. Proficient in Node.js, Express.js, and MongoDB, with a strong foundation in JavaScript and TypeScript.Experienced in Agile development practices and working collaboratively to deliver high-quality software solutions.Passionate about leveraging technology to innovate and create user-centric products.Looking to contribute to dynamic teams focused on building modern and efficient web applications.",
         "location": {
-            "address": "2712 Broadway St",
-            "postalCode": "CA 94115",
-            "city": "San Francisco",
-            "countryCode": "US",
-            "region": "California"
+            "address": "No 1, Gbesu Jisu, Tori Lovi, off Age-Mowo, Lagos. Nigeria",
+            "postalCode": "100001",
+            "city": "Lagos",
+            "countryCode": "NG",
+            "region": "Age-Mowo"
         },
         "profiles": [
             {
                 "network": "Twitter",
-                "username": "john",
-                "url": "https://twitter.com/john"
+                "username": "@UkoMalachi0412",
+                "url": "https://x.com/ukomalachi0412?s=21&t=j_GTYygjVUnd8ZPu2uwVag"
             }
         ]
     },
     "work": [
         {
-            "name": "Company",
-            "position": "President",
-            "url": "https://company.com",
-            "startDate": "2013-01-01",
-            "endDate": "2014-01-01",
-            "summary": "Description…",
+            "name": "Enoverlab",
+            "position": "Frontend Developer Intern",
+            "website": "https://enoverlab.com",
+            "startDate": "2024-11-01",
+            "endDate": "2024-12-13",
+            "summary": "collaborated with cross-functional teams(product managers, UI/UX designers, and developers) to design and develop a 6-week MVP for a blood donation platform",
             "highlights": [
-                "Started the company"
+                "Focused on building user-centeric features",
+                "Ensure high-quality, responsive and engaging user experiences."
             ]
-        }
-    ],
-    "volunteer": [
+        },
         {
-            "organization": "Organization",
-            "position": "Volunteer",
-            "url": "https://organization.com/",
-            "startDate": "2012-01-01",
-            "endDate": "2013-01-01",
-            "summary": "Description…",
+            "name": "Learnable",
+            "position": "Backend Developer Intern",
+            "website": "https://learnable.genesystechhub.com/",
+            "startDate": "2022-01-01",
+            "endDate": "2022-07-17",
+            "summary": "Ensured seamless deployment and integration by following best practices for containerization and version control.",
             "highlights": [
-                "Awarded 'Volunteer of the Month'"
+                "Translated user story maps into actionable technical specifications."
             ]
         }
     ],
     "education": [
         {
-            "institution": "University",
-            "url": "https://institution.com/",
-            "area": "Software Development",
+            "institution": "Federal University of Technology Owerri (FUTO)",
+            "area": "Electrical Electronics Engineering - Electronic & Computer Engineering",
             "studyType": "Bachelor",
-            "startDate": "2011-01-01",
-            "endDate": "2013-01-01",
-            "score": "4.0",
+            "startDate": "2016-01-01",
+            "endDate": "2021-11-22",
+            "gpa": "4.19",
             "courses": [
-                "DB1101 - Basic SQL"
+                "Semiconductor Devices",
+                "Operational Amplifiers (Op-Amps)"
             ]
         }
     ],
     "awards": [
         {
-            "title": "Award",
-            "date": "2014-11-01",
-            "awarder": "Company",
-            "summary": "There is no spoon."
-        }
-    ],
-    "certificates": [
-        {
-            "name": "Certificate",
-            "date": "2021-11-07",
-            "issuer": "Company",
-            "url": "https://certificate.com"
-        }
-    ],
-    "publications": [
-        {
-            "name": "Publication",
-            "publisher": "Company",
-            "releaseDate": "2014-10-01",
-            "url": "https://publication.com",
-            "summary": "Description…"
+            "title": "Payaza Developers Circle 2024 Winners",
+            "date": "2024-07-15",
+            "awarder": "Payaza",
+            "summary": "payaza api integration"
         }
     ],
     "skills": [
         {
             "name": "Web Development",
-            "level": "Master",
+            "level": "Expert",
             "keywords": [
                 "HTML",
                 "CSS",
-                "JavaScript"
+                "Javascript"
             ]
         }
     ],
     "languages": [
         {
             "language": "English",
-            "fluency": "Native speaker"
+            "fluency": "expert"
         }
     ],
     "interests": [
         {
-            "name": "Wildlife",
+            "name": "Photography",
             "keywords": [
-                "Ferrets",
-                "Unicorns"
+                "Blur",
+                "Autofocus",
+                "Lens"
             ]
-        }
-    ],
-    "references": [
-        {
-            "name": "Jane Doe",
-            "reference": "Reference…"
-        }
-    ],
-    "projects": [
-        {
-            "name": "Project",
-            "startDate": "2019-01-01",
-            "endDate": "2021-01-01",
-            "description": "Description...",
-            "highlights": [
-                "Won award at AIHacks 2016"
-            ],
-            "url": "https://project.com/"
         }
     ]
 }
