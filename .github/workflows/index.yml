@@ -25,7 +25,7 @@ jobs:
       - name: install resumed and jsonresume-theme-even package
         run: npm install resumed jsonresume-theme-even
 
-      - name: validate resums.json file
+      - name: validate resume.json file
         run: npx resumed validate resume.json
 
       - name: generate html file from resume.json
@@ -40,7 +40,7 @@ jobs:
       - name: generate pdf from html file.
         run: ./htmlToPdf.sh
 
-      - name: Commit and Push Changes
+      - name: commit and push changes
         run: |
               git config --global user.name "github-actions[bot]"
               git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -50,7 +50,7 @@ jobs:
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate a Tag
+      - name: generate a tag
         id: tag_version
         run: |
           TAG="v$(date +%Y%m%d%H%M%S)"  # Creates a timestamp-based tag
@@ -62,6 +62,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.TAG }}
-          files: resume.pdf  # Change to your actual file path
+          files: resume.pdf 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
