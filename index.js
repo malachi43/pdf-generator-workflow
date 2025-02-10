@@ -16,13 +16,7 @@ const htmlContent = fs.readFileSync(path.join(__dirname, 'resume.html'), 'utf8')
     await page.pdf({
         path: 'resume.pdf',
         format: 'A4', printBackground: true,
-        scale: 1,                    // Keeps the content at the correct scale
-        margin: {                    // Proper margins for readability
-            top: '20mm',
-            right: '15mm',
-            bottom: '20mm',
-            left: '15mm'
-        }
+        scale: 1                    // Keeps the content at the correct scale
     });
 
     await browser.close();
