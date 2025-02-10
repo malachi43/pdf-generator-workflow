@@ -24,9 +24,6 @@ jobs:
       
       - name: install resumed and jsonresume-theme-even package
         run: npm install resumed jsonresume-theme-even
-    
-      - name: create a basic resume.json file
-        run: npx resumed init
 
       - name: validate resums.json file
         run: npx resumed validate resume.json
