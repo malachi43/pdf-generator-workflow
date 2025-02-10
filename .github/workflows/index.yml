@@ -61,6 +61,7 @@ jobs:
       - name: upload to github releases
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ env.TAG }}
           files: resume.pdf  # Change to your actual file path
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
