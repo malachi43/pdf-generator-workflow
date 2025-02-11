@@ -23,17 +23,7 @@ jobs:
         run: npm install resumed jsonresume-theme-even
   
       - name: Extract and Parse JSON Issue Body
-        run: |
-          ISSUE_BODY=${{ github.event.issue.body }}
-          echo "$ISSUE_BODY" > resume.json
-
-          # Validate JSON format
-          if jq empty resume.json 2>/dev/null; then
-            echo "Valid JSON detected. Parsing..."
-          else
-            echo "Error: Issue body is not valid JSON!" >&2
-            exit 1
-          fi
+        run: echo '${{ github.event.issue.body }}' > resume.json
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
