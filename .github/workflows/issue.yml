@@ -53,18 +53,59 @@ jobs:
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: generate a tag
-        id: tag_version
-        run: |
-          TAG="v$(date +%Y%m%d%H%M%S)"  # Creates a timestamp-based tag
-          echo "TAG=$TAG" >> $GITHUB_ENV
-          git tag $TAG
-          git push origin $TAG
+      # - name: generate a tag
+      #   id: tag_version
+      #   run: |
+      #     TAG="v$(date +%Y%m%d%H%M%S)"  # Creates a timestamp-based tag
+      #     echo "TAG=$TAG" >> $GITHUB_ENV
+      #     git tag $TAG
+      #     git push origin $TAG
 
-      - name: upload to github releases
+      # - name: upload to github releases
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: ${{ env.TAG }}
+      #     files: resume.pdf 
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+      - name: generate unique timestamp tag
+        id: generate_tag
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)  # Generate timestamp (YYYYMMDDHHMMSS)
+          NEW_TAG="release-${TIMESTAMP}"  # Format tag as release-YYYYMMDDHHMMSS
+          echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
+          echo "Generated tag: $NEW_TAG"
+  
+      - name: create and push new tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag ${{ env.NEW_TAG }}
+          git push origin ${{ env.NEW_TAG }}
+  
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.TAG }}
-          files: resume.pdf 
+          tag_name: ${{ env.NEW_TAG }}
+          draft: false
+          prerelease: false
+          files: resume.pdf  
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: extract and save release download url
+        run: |
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ env.NEW_TAG }}/resume.pdf"
+          echo "public download url: $DOWNLOAD_URL"
+          echo $DOWNLOAD_URL > download_link.txt
+  
+      - name: commit updated download url to repo
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add download_link.txt
+          git commit -m "updated release download link for ${{ env.NEW_TAG }}"
+          git push origin main
