@@ -21,12 +21,13 @@ jobs:
       
       - name: install resumed and jsonresume-theme-even package
         run: npm install resumed jsonresume-theme-even
-
-      - name: read issue body
-        run: JSON_CONTENT=$(jq -c . ${{ github.event.issue.body }})
+  
+      - name: Save Issue Body to File
+        run: |
+          ISSUE_BODY=$(echo "${{ github.event.issue.body }}" | sed 's/"/\\"/g')
 
       - name: create a resume.json file with the body of the issue
-        run: echo "$JSON_CONTENT" > resume.json
+        run: echo "$ISSUE_BODY" > resume.json
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
