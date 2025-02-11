@@ -1,117 +1,111 @@
+# 📄 Automated Resume PDF Generation & GitHub Release
 
-# **📄 Generate a PDF from a GitHub Issue**  
-
-This repository contains a **GitHub Actions** workflow that automatically generates a **PDF from an issue body** whenever a new issue is created. The PDF is then uploaded to GitHub Releases, providing a download link.
-
----
-
-## **🛠️ How It Works**  
-1. A user creates a **new issue** with structured JSON content.  
-2. GitHub Actions triggers a **workflow** that:  
-   - Extracts the **issue body** and saves it as `resume.json`.  
-   - **Validates** the JSON structure.  
-   - Converts the JSON into an **HTML resume** using `resumed`.  
-   - Transforms the HTML into a **PDF** using `puppeteer`.  
-   - Commits the **generated PDF** to the repository.  
-   - Uploads the PDF to **GitHub Releases** for easy downloading.  
-3. The user receives a **download link** for the generated PDF.
+This repository automates the process of **converting a JSON issue into a resume PDF**, creating a **GitHub Release**, and **storing the public download link in `download_link.txt`**.
 
 ---
 
-## **🚀 How to Use This Workflow**  
+## 🚀 **How It Works**
 
-### **1️⃣ Create a New Issue**  
-1. Navigate to the **"Issues"** tab in your GitHub repository.  
-2. Click **"New Issue"** and provide:  
-   - A **title** (e.g., "Generate Resume PDF")  
-   - A **body** with structured JSON data (see example below).  
-3. Click **"Submit new issue"**.  
+1. **Open a new GitHub Issue** and paste your resume data in **JSON format**.
+2. **GitHub Actions automatically converts** the JSON into a `resume.pdf`.
+3. **A unique timestamp-based tag is created**.
+4. **The PDF is uploaded to a GitHub Release**.
+5. **A public download link is generated** and stored in `download_link.txt`.
+6. **The download link is committed back to the repository**.
 
 ---
 
-## **📌 Issue Body Format (Example JSON)**  
+## 📌 **Prerequisites**
 
-```json
+Before you begin, make sure:
+
+- You have a **GitHub repository** with Actions enabled.
+- Your **GitHub repository has a workflow file** (`.github/workflows/issue.yml`).
+- You create an issue **with valid JSON data**.
+
+---
+
+## 🛠 **GitHub Actions Workflow Overview**
+
+This workflow triggers when **a new issue is opened**.
+
+### **1️⃣ Issue Creation & JSON Parsing**
+- When a **new issue** is opened, its **content is extracted**.
+- The JSON is **saved as `resume.json`**.
+
+### **2️⃣ Convert JSON to PDF**
+- The **`resume.json`** is processed using a script that generates a **formatted PDF**.
+- The PDF is saved as `resume.pdf`.
+
+### **3️⃣ Generate a Unique Tag & Create a GitHub Release**
+- A **unique timestamp-based tag** (`release-YYYYMMDDHHMMSS`) is created.
+- The **`resume.pdf`** is uploaded to a GitHub Release.
+
+### **4️⃣ Store Public Download Link in `download_link.txt`**
+- The **GitHub Release download URL** is extracted.
+- The URL is saved in **`download_link.txt`**.
+- The file is committed back to the repository.
+
+---
+
+## 📝 **Example JSON Issue**
+
+Create a **new issue** in this repository with the following JSON:
+
+```
 {
-  "basics": {
-    "name": "John Doe",
-    "email": "john.doe@example.com",
-    "phone": "+1234567890",
-    "summary": "Experienced software engineer with expertise in web development."
-  },
-  "work": [
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1234567890",
+  "summary": "Experienced Software Engineer...",
+  "skills": ["JavaScript", "Node.js", "React", "Puppeteer"],
+  "experience": [
     {
       "company": "Tech Corp",
       "position": "Senior Developer",
-      "startDate": "2020-01-01",
-      "endDate": "2023-12-31",
-      "summary": "Developed and maintained web applications using JavaScript and Node.js."
-    }
-  ],
-  "education": [
-    {
-      "institution": "XYZ University",
-      "degree": "BSc in Computer Science",
-      "startDate": "2016-09-01",
-      "endDate": "2020-06-30"
+      "years": "2019 - Present"
     }
   ]
 }
 ```
 
----
-
-## **🎯 What Happens After You Create an Issue?**  
-- The workflow starts **automatically**.  
-- It **parses** the JSON and **converts** it into a resume-style PDF.  
-- The PDF is **uploaded to GitHub Releases**.  
-- You will receive a **download link** in the "Releases" section.
+Once the issue is created, the workflow will **automatically generate a resume PDF and upload it**.
 
 ---
 
-## **🔗 How to Download the Generated PDF**  
-1. Go to the **"Releases"** section of the repository.  
-   - Click **[Releases](../../releases)** to view all uploaded PDFs.  
-2. Find the latest release with a timestamp-based **tag** (e.g., `v20240210153045`).  
-3. Click the **PDF file** to download it.  
+## 🔗 **Where to Find the Resume PDF Download Link?**
+
+After the workflow runs successfully:
+
+1. **Check `download_link.txt`** in the repository.
+2. The file contains a URL similar to:
+   ```
+   https://github.com/your-username/your-repo/releases/download/release-YYYYMMDDHHMMSS/resume.pdf
+   ```
 
 ---
 
-## **📜 Workflow Breakdown**  
+## 🎯 **How to Trigger the Workflow?**
 
-The **workflow** that enables this process is stored in `.github/workflows/issue.yml`. Here’s what each step does:
-
-| Step | Description |
-|------|-------------|
-| **Clone Repository** | Checks out the repository to access files. |
-| **Install Node.js** | Sets up Node.js for package management. |
-| **Initialize Project** | Runs `npm init -y` to create a package.json file. |
-| **Install Dependencies** | Installs `resumed` and a resume theme. |
-| **Extract Issue Body** | Saves the issue body as `resume.json`. |
-| **Validate JSON** | Ensures the JSON follows the resume schema. |
-| **Generate HTML** | Converts `resume.json` into an HTML file. |
-| **Convert HTML to PDF** | Uses `puppeteer` to generate a PDF. |
-| **Commit and Push PDF** | Adds the PDF to the repository. |
-| **Create Git Tag** | Generates a versioned tag for tracking. |
-| **Upload PDF to GitHub Releases** | Makes the PDF available for download. |
-
-## **🛠️ Troubleshooting**  
-
-| Problem | Solution |
-|---------|----------|
-| **PDF is not generated** | Check the **"Actions"** tab in GitHub for workflow logs. |
-| **Invalid JSON error** | Ensure your issue body follows **valid JSON format**. |
-| **Download link not appearing** | Refresh the **Releases** page or check the workflow logs. |
-| **Permissions error when pushing changes** | Ensure the GitHub token has the right repository permissions. |
+1. **Create an issue** with a JSON-formatted resume.
+2. **Wait for GitHub Actions to process the issue.**
+3. **Check `download_link.txt`** for the resume PDF download URL.
 
 ---
 
-## **🎉 Conclusion**  
-This workflow **automates resume PDF generation** from GitHub issues. It helps streamline resume creation by converting structured JSON into a formatted PDF with zero manual intervention.
+## 🔄 **Workflow Execution Steps**
 
-🔥 **Now, try creating an issue and get your resume in seconds!** 🚀
+1. **Trigger:** An issue is opened with JSON data.
+2. **Parse JSON:** Extract issue content and save as `resume.json`.
+3. **Convert to PDF:** Generate `resume.pdf`.
+4. **Create Release:** Generate timestamped tag and create a GitHub Release.
+5. **Upload PDF:** Attach `resume.pdf` to the release.
+6. **Store Link:** Write public download URL to `download_link.txt`.
+7. **Commit Back:** Push `download_link.txt` to the repository.
 
-###### NOTE: After a successful workflow completion the Resume/CV download link will be accessible at this url: 
-- `https://github.com/malachi43/pdf-generator-workflow/releases/latest/download/resume.pdf`
-- The url signature is this: `https://github.com/{OWNER}/{REPOSITORY}/releases/latest/download/resume.pdf`
+---
+
+## 🎉 **Congratulations!**
+
+You have successfully automated resume generation using GitHub Actions! 🚀
 
