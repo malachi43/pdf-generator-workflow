@@ -23,15 +23,16 @@ jobs:
         run: npm install resumed jsonresume-theme-even
 
       - name: create a resume.json file with the body of the issue
-        run: |
-          touch resume.json
-          echo ${{ github.event.issue.body }} > resume.json
+        run: echo "${{ github.event.issue.body }}" > resume.json
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
 
       - name: generate html file from resume.json
         run: npx resumed render --theme jsonresume-theme-even
+
+      - name: display contents of resume.json
+        run: cat resume.json
       
       # - name: install puppeteer, this helps us to convert html to pdf
       #   run: npm install puppeteer
