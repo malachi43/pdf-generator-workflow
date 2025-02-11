@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Print Issue Details
         run: |
-          echo "Issue Title: ${{ github.event.issue.title }}"
-          echo "Issue Body: ${{ github.event.issue.body }}"
-          echo "Issue URL: ${{ github.event.issue.html_url }}"
+          echo "Issue Title: \"${{ github.event.issue.title }}\""
+          echo "Issue Body: \"${{ github.event.issue.body }}\""
+          echo "Issue URL: \"${{ github.event.issue.html_url }}\""
