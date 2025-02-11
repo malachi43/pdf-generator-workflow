@@ -8,7 +8,7 @@ jobs:
   start_pdf_generation_process:
     runs-on: ubuntu-20.04
     steps:
-      - name: clone repository
+      - name: fetch lastest code from github
         uses: actions/checkout@v4
       
       - name: install nodejs
@@ -16,10 +16,10 @@ jobs:
         with:
           node-version: "20"
         
-      - name: install repo
+      - name: initialize repository
         run: npm init -y
       
-      - name: install resumed and jsonresume-theme-even package
+      - name: install resumed and jsonresume-theme-even packages
         run: npm install resumed jsonresume-theme-even
   
       - name: save github issue_body to resume.json file
@@ -30,17 +30,14 @@ jobs:
 
       - name: generate html file from resume.json
         run: npx resumed render --theme jsonresume-theme-even
-
-      - name: display contents of resume.json
-        run: cat resume.json
       
-      - name: install puppeteer, this helps us to convert html to pdf
+      - name: install puppeteer - this helps us to convert html to pdf
         run: npm install puppeteer
 
-      - name: making script executable
+      - name: make script (htmlToPdf.sh) executable
         run:  chmod +x htmlToPdf.sh
 
-      - name: generate pdf from html file.
+      - name: generate pdf from resume.html file.
         run: ./htmlToPdf.sh
 
       - name: commit and push changes
@@ -52,25 +49,7 @@ jobs:
               git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
         env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: generate a tag
-      #   id: tag_version
-      #   run: |
-      #     TAG="v$(date +%Y%m%d%H%M%S)"  # Creates a timestamp-based tag
-      #     echo "TAG=$TAG" >> $GITHUB_ENV
-      #     git tag $TAG
-      #     git push origin $TAG
-
-      # - name: upload to github releases
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: ${{ env.TAG }}
-      #     files: resume.pdf 
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
+    
       - name: generate unique timestamp tag
         id: generate_tag
         run: |
@@ -79,14 +58,14 @@ jobs:
           echo "NEW_TAG=$NEW_TAG" >> $GITHUB_ENV
           echo "Generated tag: $NEW_TAG"
   
-      - name: create and push new tag
+      - name: push newly created tag to github.
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git tag ${{ env.NEW_TAG }}
           git push origin ${{ env.NEW_TAG }}
   
-      - name: Create GitHub Release
+      - name: create gitHub release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.NEW_TAG }}
