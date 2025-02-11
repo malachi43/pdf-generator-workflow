@@ -111,3 +111,7 @@ This workflow **automates resume PDF generation** from GitHub issues. It helps s
 
 🔥 **Now, try creating an issue and get your resume in seconds!** 🚀
 
+###### NOTE: After a successful workflow completion the Resume/CV download link will be accessible at this url: 
+- `https://github.com/malachi43/pdf-generator-workflow/releases/latest/download/resume.pdf`
+- The url signature is this: `https://github.com/{OWNER}/{REPOSITORY}/releases/latest/download/resume.pdf`
+
