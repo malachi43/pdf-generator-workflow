@@ -30,6 +30,20 @@ jobs:
         run: |
           EMAIL=$(jq -r '.basics.email' resume.json)
           echo "EMAIL=$EMAIL" >> $GITHUB_ENV
+        
+      - name: assign issue using extracted email
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const assignee = "${{ env.EMAIL }}";
+            github.rest.issues.addAssignees({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            assignees: [assignee]
+              });
+  
 
       - name: Display the email
         run: echo "The extracted email is $EMAIL"
