@@ -34,7 +34,7 @@ jobs:
       - name: Update repo description
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GIST_PAT_TOKEN }}
           script: |
             github.rest.repos.update({
             owner: context.repo.owner,
