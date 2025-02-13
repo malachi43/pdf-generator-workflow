@@ -25,10 +25,14 @@ jobs:
       - name: save github issue_body to resume.json file
         run: echo '${{ github.event.issue.body }}' > resume.json
 
-      - name: read email field from JSON
+      - name: Read email from JSON
+        id: read_email
         run: |
-          ASSIGNEES=$(jq -c '.assignees' assignees.json)
-          echo "assignees=$ASSIGNEES" >> $GITHUB_ENV
+          EMAIL=$(jq -r '.basics.email' resume.json)
+          echo "EMAIL=$EMAIL" >> $GITHUB_ENV
+
+      - name: Display the email
+        run: echo "The extracted email is $EMAIL"
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
