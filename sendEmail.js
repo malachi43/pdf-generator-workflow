@@ -2,7 +2,9 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const args = process.argv.slice(2);
+//user to send the emaiil to.
 const to = args[0];
+//link to the resume to download.
 const downloadLink = args[1]
 
 const html = `
@@ -90,20 +92,18 @@ const sendEmail = (to) => {
     async function main() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
-            from: "ukomalachi@gmail.com",
+            from: process.env.EMAIL_USER,
             to,
             subject: "Your Resume is Ready for Download!",
             html,
         });
 
         console.log("Message sent: %s", info.messageId);
-        // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
     }
+
 
     main().catch(console.error)
 
 }
-
-
 
 sendEmail(to);
