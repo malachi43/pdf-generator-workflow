@@ -45,7 +45,7 @@ jobs:
         run:  chmod +x htmlToPdf.sh
 
       - name: generate pdf from resume.html file.
-        run: ./htmlToPdf.sh    
+        run: ./htmlToPdf.sh
     
       - name: generate unique timestamp tag
         id: generate_tag
@@ -71,6 +71,13 @@ jobs:
           files: resume.pdf  
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: extract and save release download url
+        run: |
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ env.NEW_TAG }}/resume.pdf"
+          echo "public download url: $DOWNLOAD_URL"
+          echo $DOWNLOAD_URL > download_link.txt
+          echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
       
       - name: send resume link to user
         env:
