@@ -1,1 +1,1 @@
-https://github.com/malachi43/pdf-generator-workflow/releases/download/release-20250224105735/resume.pdf
+https://github.com/malachi43/pdf-generator-workflow/releases/download/release-20250224112151/resume.pdf
