@@ -32,7 +32,7 @@ jobs:
           EMAIL=$(jq -r '.basics.email' resume.json)
           echo "EMAIL=$EMAIL" >> $GITHUB_ENV
         
-      - name: Update repo description
+      - name: update repo description
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.PAT_TOKEN }}
@@ -42,10 +42,6 @@ jobs:
             repo: context.repo.repo,
             description: "${{ env.EMAIL }}"
               });
-  
-
-      - name: Display the email
-        run: echo "The extracted email is $EMAIL"
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
@@ -102,6 +98,10 @@ jobs:
           DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/${{ env.NEW_TAG }}/resume.pdf"
           echo "public download url: $DOWNLOAD_URL"
           echo $DOWNLOAD_URL > download_link.txt
+          echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
+      
+      - name: send resume link to user
+        run: node sendEmail.js ${{secrets.EMAIL_SERVICE}}  ${{secrets.EMAIL_HOST}} ${{secrets.SEND_EMAIL_FROM}} ${{env.EMAIL}} ${{secrets.APP_PASSWORD}} ${{env.DOWNLOAD_URL}}
   
       - name: commit updated download url to repo
         run: |
