@@ -104,6 +104,8 @@ jobs:
         env:
           EMAIL_USER: ${{ secrets.SEND_EMAIL_FROM }}
           EMAIL_PASS: ${{ secrets.APP_PASSWORD }}
+          EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+          EMAIL_SERVICE: ${{ secrets.EMAIL_SERVICE }}
         run: node sendEmail.js ${{env.EMAIL}} ${{env.DOWNLOAD_URL}}
           
       - name: commit updated download url to repo

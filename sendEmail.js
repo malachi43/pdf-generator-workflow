@@ -77,8 +77,8 @@ const html = `
 
 const sendEmail = (to) => {
     const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        host: "smtp.gmail.com",
+        service: process.env.EMAIL_SERVICE,
+        host: process.env.EMAIL_HOST,
         port: 465,
         secure: true,
         auth: {
