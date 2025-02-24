@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 
 const args = process.argv.slice(2);
 const to = args[0];
-const downloadLink = args[1];
+const downloadLink = args[1]
 
 const html = `
 <!DOCTYPE html>
@@ -82,7 +82,7 @@ const sendEmail = (to) => {
         port: 465,
         secure: true,
         auth: {
-            user: "ukomalachi@gmail.com",
+            user: process.env.SEND_EMAIL_FROM,
             pass: process.env.APP_PASSWORD,
         },
     });
