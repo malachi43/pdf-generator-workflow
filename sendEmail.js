@@ -82,8 +82,8 @@ const sendEmail = (to) => {
         port: 465,
         secure: true,
         auth: {
-            user: process.env.SEND_EMAIL_FROM,
-            pass: process.env.APP_PASSWORD,
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
         },
     });
 
