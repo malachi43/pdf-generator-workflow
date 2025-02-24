@@ -83,7 +83,7 @@ const sendEmail = (to) => {
         secure: true,
         auth: {
             user: "ukomalachi@gmail.com",
-            pass: "eujn byaf foxc japw",
+            pass: process.env.APP_PASSWORD,
         },
     });
 
