@@ -101,7 +101,7 @@ jobs:
           echo "DOWNLOAD_URL=$DOWNLOAD_URL" >> $GITHUB_ENV
       
       - name: send resume link to user
-        run: node sendEmail.js ${{secrets.EMAIL_SERVICE}}  ${{secrets.EMAIL_HOST}} ${{secrets.SEND_EMAIL_FROM}} ${{env.EMAIL}} ${{secrets.APP_PASSWORD}} ${{env.DOWNLOAD_URL}}
+        run: node sendEmail.js ${{env.EMAIL}} ${{env.DOWNLOAD_URL}}
   
       - name: commit updated download url to repo
         run: |

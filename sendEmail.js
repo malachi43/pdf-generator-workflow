@@ -1,13 +1,9 @@
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const args = process.argv.slice(2);
-const service = args[0];
-const host = args[1]
-const from = args[2];
-const to = args[3];
-const password = args[4];
-const downloadLink = args[5];
-console.log(args);
+const to = args[0];
+const downloadLink = args[1];
 
 const html = `
 <!DOCTYPE html>
@@ -79,24 +75,22 @@ const html = `
 `
 
 
-const sendEmail = (service, host, from, to, password, downloadLink) => {
-
-    console.log({ service, host, from, to, password, downloadLink })
+const sendEmail = (to) => {
     const transporter = nodemailer.createTransport({
-        service,
-        host,
+        service: "Gmail",
+        host: "smtp.gmail.com",
         port: 465,
         secure: true,
         auth: {
-            user: from,
-            pass: password,
+            user: "ukomalachi@gmail.com",
+            pass: "eujn byaf foxc japw",
         },
     });
 
     async function main() {
         // send mail with defined transport object
         const info = await transporter.sendMail({
-            from,
+            from: "ukomalachi@gmail.com",
             to,
             subject: "Your Resume is Ready for Download!",
             html,
@@ -112,4 +106,4 @@ const sendEmail = (service, host, from, to, password, downloadLink) => {
 
 
 
-sendEmail(service, host, from, to, password, downloadLink);
+sendEmail(to);

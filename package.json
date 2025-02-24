@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "jsonresume-theme-even": "^0.23.0",
     "nodemailer": "^6.10.0",
     "puppeteer": "^24.2.0",
