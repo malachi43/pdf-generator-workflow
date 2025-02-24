@@ -1,6 +1,6 @@
 # 📄 Automated Resume PDF Generation & GitHub Release
 
-This repository automates the process of **converting a JSON issue into a resume PDF**, creating a **GitHub Release**, and **storing the public download link in `download_link.txt`**.
+This repository automates the process of **converting a JSON issue into a resume PDF**, creating a **GitHub Release**, and **sending a link to download the resume to the email provided in the JSON**.
 
 ---
 
@@ -10,18 +10,7 @@ This repository automates the process of **converting a JSON issue into a resume
 2. **GitHub Actions automatically converts** the JSON into a `resume.pdf`.
 3. **A unique timestamp-based tag is created**.
 4. **The PDF is uploaded to a GitHub Release**.
-5. **A public download link is generated** and stored in `download_link.txt`.
-6. **The download link is committed back to the repository**.
-
----
-
-## 📌 **Prerequisites**
-
-Before you begin, make sure:
-
-- You have a **GitHub repository** with Actions enabled.
-- Your **GitHub repository has a workflow file** (`.github/workflows/issue.yml`).
-- You create an issue **with valid JSON data**.
+5. **A link to download the resume is sent to the email provided in the JSON**.
 
 ---
 
@@ -41,10 +30,9 @@ This workflow triggers when **a new issue is opened**.
 - A **unique timestamp-based tag** (`release-YYYYMMDDHHMMSS`) is created.
 - The **`resume.pdf`** is uploaded to a GitHub Release.
 
-### **4️⃣ Store Public Download Link in `download_link.txt`**
-- The **GitHub Release download URL** is extracted.
-- The URL is saved in **`download_link.txt`**.
-- The file is committed back to the repository.
+### **4️⃣ Send Resume Download Link via Email**
+- The email provided in the JSON is extracted.
+- A **download link for the resume PDF** is sent to that email automatically.
 
 ---
 
@@ -54,34 +42,118 @@ Create a **new issue** in this repository with the following JSON:
 
 ```
 {
-  "name": "John Doe",
-  "email": "john.doe@example.com",
-  "phone": "+1234567890",
-  "summary": "Experienced Software Engineer...",
-  "skills": ["JavaScript", "Node.js", "React", "Puppeteer"],
-  "experience": [
-    {
-      "company": "Tech Corp",
-      "position": "Senior Developer",
-      "years": "2019 - Present"
-    }
-  ]
+  "basics": {
+    "name": "John Doe",
+    "label": "Programmer",
+    "image": "",
+    "email": "john@gmail.com",
+    "phone": "(912) 555-4321",
+    "url": "https://johndoe.com",
+    "summary": "A summary of John Doe…",
+    "location": {
+      "address": "2712 Broadway St",
+      "postalCode": "CA 94115",
+      "city": "San Francisco",
+      "countryCode": "US",
+      "region": "California"
+    },
+    "profiles": [{
+      "network": "Twitter",
+      "username": "john",
+      "url": "https://twitter.com/john"
+    }]
+  },
+  "work": [{
+    "name": "Company",
+    "position": "President",
+    "url": "https://company.com",
+    "startDate": "2013-01-01",
+    "endDate": "2014-01-01",
+    "summary": "Description…",
+    "highlights": [
+      "Started the company"
+    ]
+  }],
+  "volunteer": [{
+    "organization": "Organization",
+    "position": "Volunteer",
+    "url": "https://organization.com/",
+    "startDate": "2012-01-01",
+    "endDate": "2013-01-01",
+    "summary": "Description…",
+    "highlights": [
+      "Awarded 'Volunteer of the Month'"
+    ]
+  }],
+  "education": [{
+    "institution": "University",
+    "url": "https://institution.com/",
+    "area": "Software Development",
+    "studyType": "Bachelor",
+    "startDate": "2011-01-01",
+    "endDate": "2013-01-01",
+    "score": "4.0",
+    "courses": [
+      "DB1101 - Basic SQL"
+    ]
+  }],
+  "awards": [{
+    "title": "Award",
+    "date": "2014-11-01",
+    "awarder": "Company",
+    "summary": "There is no spoon."
+  }],
+  "certificates": [{
+    "name": "Certificate",
+    "date": "2021-11-07",
+    "issuer": "Company",
+    "url": "https://certificate.com"
+  }],
+  "publications": [{
+    "name": "Publication",
+    "publisher": "Company",
+    "releaseDate": "2014-10-01",
+    "url": "https://publication.com",
+    "summary": "Description…"
+  }],
+  "skills": [{
+    "name": "Web Development",
+    "level": "Master",
+    "keywords": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ]
+  }],
+  "languages": [{
+    "language": "English",
+    "fluency": "Native speaker"
+  }],
+  "interests": [{
+    "name": "Wildlife",
+    "keywords": [
+      "Ferrets",
+      "Unicorns"
+    ]
+  }],
+  "references": [{
+    "name": "Jane Doe",
+    "reference": "Reference…"
+  }],
+  "projects": [{
+    "name": "Project",
+    "startDate": "2019-01-01",
+    "endDate": "2021-01-01",
+    "description": "Description...",
+    "highlights": [
+      "Won award at AIHacks 2016"
+    ],
+    "url": "https://project.com/"
+  }]
 }
 ```
 
-Once the issue is created, the workflow will **automatically generate a resume PDF and upload it**.
-
----
-
-## 🔗 **Where to Find the Resume PDF Download Link?**
-
-After the workflow runs successfully:
-
-1. **Check `download_link.txt`** in the repository.
-2. The file contains a URL similar to:
-   ```
-   https://github.com/your-username/your-repo/releases/download/release-YYYYMMDDHHMMSS/resume.pdf
-   ```
+Users should use this template to create their own resume JSON.
 
 ---
 
@@ -89,19 +161,7 @@ After the workflow runs successfully:
 
 1. **Create an issue** with a JSON-formatted resume.
 2. **Wait for GitHub Actions to process the issue.**
-3. **Check `download_link.txt`** for the resume PDF download URL.
-
----
-
-## 🔄 **Workflow Execution Steps**
-
-1. **Trigger:** An issue is opened with JSON data.
-2. **Parse JSON:** Extract issue content and save as `resume.json`.
-3. **Convert to PDF:** Generate `resume.pdf`.
-4. **Create Release:** Generate timestamped tag and create a GitHub Release.
-5. **Upload PDF:** Attach `resume.pdf` to the release.
-6. **Store Link:** Write public download URL to `download_link.txt`.
-7. **Commit Back:** Push `download_link.txt` to the repository.
+3. **Check your email** for the resume download link.
 
 ---
 
