@@ -1,1 +1,0 @@
-https://github.com/malachi43/pdf-generator-workflow/releases/download/release-20250224120513/resume.pdf
