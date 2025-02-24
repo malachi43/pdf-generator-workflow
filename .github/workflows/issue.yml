@@ -32,16 +32,16 @@ jobs:
           EMAIL=$(jq -r '.basics.email' resume.json)
           echo "EMAIL=$EMAIL" >> $GITHUB_ENV
         
-      - name: update repo description
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.PAT_TOKEN }}
-          script: |
-            github.rest.repos.update({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            description: "${{ env.EMAIL }}"
-              });
+      # - name: update repo description
+      #   uses: actions/github-script@v7
+      #   with:
+      #     github-token: ${{ secrets.PAT_TOKEN }}
+      #     script: |
+      #       github.rest.repos.update({
+      #       owner: context.repo.owner,
+      #       repo: context.repo.repo,
+      #       description: "${{ env.EMAIL }}"
+      #         });
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
