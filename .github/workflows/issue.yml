@@ -7,7 +7,7 @@ on:
 
 jobs:
   start_pdf_generation_process:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: fetch lastest code from github
         uses: actions/checkout@v4
