@@ -31,6 +31,7 @@ jobs:
         run: |
           EMAIL=$(jq -r '.basics.email' resume.json)
           echo "EMAIL=$EMAIL" >> $GITHUB_ENV
+          echo "parsed email: $EMAIL"
 
       - name: validate resume.json file
         run: npx resumed validate resume.json
